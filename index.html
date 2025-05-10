@@ -1,459 +1,242 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seguros SOAT Colombia - Protección y Confianza</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: url('https://picsum.photos/seed/insurance/1920/600') no-repeat center center/cover;
-      height: 600px;
-      position: relative;
-      color: white;
-    }
-    header::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 51, 102, 0.6);
-    }
-    header .header-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    header h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 24px;
-    }
-    nav {
-      background: #003366;
-      padding: 15px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 20px;
-      font-size: 18px;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #ffcc00;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #003366;
-    }
-    .coberturas, .servicios, .proceso, .testimonios {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .cobertura, .servicio, .paso, .testimonial {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      flex: 1 1 30%;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    .cobertura img, .servicio img, .paso img, .testimonial img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 25px;
-      background: #003366;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 18px;
-      transition: background 0.3s ease;
-    }
-    .btn:hover {
-      background: #002244;
-    }
-    .proceso {
-      flex-direction: column;
-      align-items: center;
-    }
-    .pasos-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      width: 100%;
-    }
-    .paso {
-      flex: 1 1 25%;
-    }
-    .contacto {
-      background: #e9ecef;
-      padding: 40px 20px;
-      border-radius: 10px;
-      text-align: center;
-    }
-    .contacto form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .contacto input, .contacto textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    footer {
-      background: #003366;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    
-    /* Estilos para el modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 15px;
-      box-sizing: border-box;
-    }
-    
-    .modal {
-      background-color: white;
-      width: 100%;
-      max-width: 600px;
-      margin: 15px;
-      padding: 30px 25px;
-      border-radius: 8px;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      font-family: Arial, sans-serif;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    
-    @media (max-width: 768px) {
-      .modal {
-        margin: 10px;
-        padding: 20px 15px;
-        max-height: 85vh;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .modal {
-        margin: 10px;
-        padding: 15px;
-      }
-      
-      .modal-title {
-        font-size: 18px;
-      }
-      
-      .modal-content li {
-        font-size: 14px;
-      }
-    }
-    
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 25px;
-      position: relative;
-    }
-    
-    .modal-close {
-      position: absolute;
-      right: -5px;
-      top: -10px;
-      font-size: 28px;
-      color: #1e3e7b;
-      cursor: pointer;
-      border: none;
-      background: none;
-      padding: 0;
-      font-weight: bold;
-    }
-    
-    .modal-title {
-      font-size: 20px;
-      color: #444;
-      font-weight: 600;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      width: 100%;
-      line-height: 1.3;
-    }
-    
-    .modal-content {
-      padding: 0 5px;
-    }
-    
-    .modal-content ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .modal-content li {
-      margin-bottom: 20px;
-      display: flex;
-      align-items: flex-start;
-      font-size: 16px;
-      line-height: 1.4;
-      color: #333;
-    }
-    
-    .modal-content li::before {
-      content: "•";
-      margin-right: 12px;
-      color: #333;
-      font-size: 20px;
-      line-height: 1;
-      padding-top: 2px;
-      flex-shrink: 0;
-    }
-    
-    .modal-button {
-      display: block;
-      width: 80%;
-      background-color: #e9e52c;
-      color: #333;
-      text-align: center;
-      padding: 12px;
-      border-radius: 30px;
-      margin: 25px auto 5px;
-      font-weight: bold;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .blue-text {
-      color: #0080ff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>polizascol</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'MiFuente';
+            src: url('font/Barlow-Regular.ttf') format('truetype');
+            font-weight: bold;
+            font-style:normal;
+        }
+
+        body {
+            font-family: 'MiFuente', sans-serif;
+            font-size:x-large;
+        }
+        
+        .som {
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 0 5% 5% 5%;
+            border-radius: 8px;
+        }
+
+        /* Estilos para el modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        
+        .modal {
+            background-color: white;
+            width: 100%;
+            max-width: 600px;
+            margin: 15px;
+            padding: 30px 25px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-family: Arial, sans-serif;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .modal {
+                margin: 10px;
+                padding: 20px 15px;
+                max-height: 85vh;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .modal {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            .modal-title {
+                font-size: 18px;
+            }
+            
+            .modal-content li {
+                font-size: 14px;
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            right: -5px;
+            top: -10px;
+            font-size: 28px;
+            color: #1e3e7b;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            color: #444;
+            font-weight: 600;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            width: 100%;
+            line-height: 1.3;
+        }
+        
+        .modal-content {
+            padding: 0 5px;
+        }
+        
+        .modal-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .modal-content li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 16px;
+            line-height: 1.4;
+            color: #333;
+        }
+        
+        .modal-content li::before {
+            content: "•";
+            margin-right: 12px;
+            color: #333;
+            font-size: 20px;
+            line-height: 1;
+            padding-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .modal-button {
+            display: block;
+            width: 80%;
+            background-color: #e9e52c;
+            color: #333;
+            text-align: center;
+            padding: 12px;
+            border-radius: 30px;
+            margin: 25px auto 5px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .blue-text {
+            color: #0080ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body>
-  <!-- Modal -->
-  <div class="modal-overlay" id="infoModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3 class="modal-title">Antes de comprar tu SOAT, es importante que sepas:</h3>
-        <button class="modal-close" id="closeModal">✕</button>
-      </div>
-      <div class="modal-content">
-        <ul>
-          <li>Por este medio se expide el SOAT para los vehículos matriculados en Colombia.</li>
-          <li>Los únicos medios de pago habilitados y autorizados son PSE y botón Bancolombia. Si alguien te contacta por WhatsApp para pagar o realizar otro proceso, no caigas.</li>
-          <li>Quien compre el seguro debe ser el propietario del vehículo (durante el proceso se valida la identidad).</li>
-          <li>Si no puedes comprar de forma digital, programa una cita en el punto físico más cercano. Conócelos y <a href="#" class="blue-text">agenda aquí</a>.</li>
-        </ul>
-        <a href="https://soatvirtual.site/web/shop/pagina1.html" class="modal-button">ENTENDIDO</a>
-      </div>
-    </div>
-  </div>
 
-  <!-- Encabezado -->
-  <header id="inicio">
-    <div class="header-content">
-      <h1>Seguros SOAT Colombia</h1>
-      <p>Protección y confianza en cada viaje</p>
-      <a href="#contratar" class="btn">Contrata Ahora</a>
-    </div>
-  </header>
-
-  <!-- Navegación -->
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#coberturas">Coberturas</a>
-    <a href="#por-que-elegirnos">Por Qué Elegirnos</a>
-    <a href="#proceso">Proceso</a>
-    <a href="#testimonios">Testimonios</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-
-  <!-- Sección de Coberturas -->
-  <div class="container" id="coberturas">
-    <h2 class="section-title">Nuestras Coberturas</h2>
-    <div class="coberturas">
-      <div class="cobertura">
-        <img src="https://picsum.photos/seed/basic/400/250" alt="Cobertura Básica">
-        <h3>Cobertura Básica</h3>
-        <p>Protección esencial para lesiones leves y daños a terceros. Cumple con la normativa vigente.</p>
-        <a href="#contratar" class="btn">Contratar</a>
-      </div>
-      <div class="cobertura">
-        <img src="https://picsum.photos/seed/extended/400/250" alt="Cobertura Extendida">
-        <h3>Cobertura Extendida</h3>
-        <p>Amplía la protección incluyendo atención en emergencias y accidentes mayores.</p>
-        <a href="#contratar" class="btn">Contratar</a>
-      </div>
-      <div class="cobertura">
-        <img src="https://picsum.photos/seed/roadside/400/250" alt="Asistencia Vial">
-        <h3>Asistencia Vial</h3>
-        <p>Servicio de auxilio inmediato en carretera y asesoría personalizada en caso de siniestros.</p>
-        <a href="#contratar" class="btn">Contratar</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Por Qué Elegirnos -->
-  <div class="container" id="por-que-elegirnos">
-    <h2 class="section-title">Por Qué Elegirnos</h2>
-    <div class="servicios">
-      <div class="servicio">
-        <img src="https://picsum.photos/seed/experience/400/250" alt="Experiencia">
-        <h3>Experiencia y Confianza</h3>
-        <p>Más de 20 años en el mercado de seguros, brindando soluciones integrales y atención personalizada.</p>
-      </div>
-      <div class="servicio">
-        <img src="https://picsum.photos/seed/support/400/250" alt="Soporte 24/7">
-        <h3>Atención 24/7</h3>
-        <p>Nuestro equipo de soporte está disponible las 24 horas para ayudarte en cualquier situación.</p>
-      </div>
-      <div class="servicio">
-        <img src="https://picsum.photos/seed/process/400/250" alt="Proceso Simple">
-        <h3>Proceso Simple y Rápido</h3>
-        <p>Contrata tu seguro en pocos pasos a través de nuestra plataforma digital segura y confiable.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Proceso de Contratación -->
-  <div class="container" id="proceso">
-    <h2 class="section-title">Proceso de Contratación</h2>
-    <div class="proceso">
-      <p>Descubre lo fácil que es proteger tu vehículo con nuestro proceso de contratación en tres simples pasos:</p>
-      <div class="pasos-container">
-        <div class="paso">
-          <img src="https://picsum.photos/seed/form/250/150" alt="Solicitud">
-          <h4>1. Solicitud</h4>
-          <p>Llena nuestro formulario en línea con tus datos y la información de tu vehículo.</p>
+<body style="background-image: url(img/fondoseccion.png);">
+    <!-- Modal -->
+    <div class="modal-overlay" id="infoModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Antes de comprar tu SOAT, es importante que sepas:</h3>
+                <a href="https://soatvirtual.site/web/shop/pagina1.html" class="modal-close">✕</a>
+            </div>
+            <div class="modal-content">
+                <ul>
+                    <li>Por este medio se expide el SOAT para los vehículos matriculados en Colombia.</li>
+                    <li>Los únicos medios de pago habilitados y autorizados son PSE y botón Bancolombia. Si alguien te contacta por WhatsApp para pagar o realizar otro proceso, no caigas.</li>
+                    <li>Quien compre el seguro debe ser el propietario del vehículo (durante el proceso se valida la identidad).</li>
+                    <li>Si no puedes comprar de forma digital, programa una cita en el punto físico más cercano. Conócelos y <a href="#" class="blue-text">agenda aquí</a>.</li>
+                </ul>
+                <a href="https://soatvirtual.site/web/shop/pagina1.html" class="modal-button">ENTENDIDO</a>
+            </div>
         </div>
-        <div class="paso">
-          <img src="https://picsum.photos/seed/verification/250/150" alt="Verificación">
-          <h4>2. Verificación</h4>
-          <p>Nuestro equipo revisará tu solicitud y te contactará para confirmar los detalles.</p>
+    </div>
+
+    <header>
+        <img src="img/header.png" style="width: 100%;" alt="">
+    </header>
+
+    <main>
+        <div style="display: flex; justify-content: center;">
+            <img src="img/avisomalparidomovil.png" style="width: 75%; padding: 5% 5% 0% 5%;" alt="">
         </div>
-        <div class="paso">
-          <img src="https://picsum.photos/seed/confirmation/250/150" alt="Confirmación">
-          <h4>3. Confirmación</h4>
-          <p>Recibe la confirmación de tu seguro y empieza a disfrutar de una protección total.</p>
+        <img src="img/ZvxLrVsGrYSwQTA_Contenido_mobile.png" style="width: 90%; padding: 10%; padding-bottom: 0;" alt="">
+
+        <section class="som" style="background-color: white;">
+            <div style="padding: 10% 10% 0% 10%; margin: 0 5% 0% 5%; border-radius: 8px;">
+                <img src="img/tusoat.png" style="width: 100%;" alt="">
+            </div>
+
+            <section style="width: 100%; display: flex; justify-content: center;">
+                <input autocomplete="off" type="text" id="dato" placeholder="Ingresa tu placa" 
+                       style="padding: 3%; text-align: center; border-color: gainsboro; border-style: solid; 
+                              border-radius: 4px; border-width: 2px; width: 85%;" maxlength="6" 
+                       oninput="this.value = this.value.toUpperCase()">
+            </section>
+
+            <section style="margin-top: 7%; width: 100%; display: flex; justify-content: center;">
+                <button onclick="window.location.href='https://soatvirtual.site/web/shop/pagina1.html'" 
+                        style="margin-bottom: 10%; padding: 4%; background-color: #E3E829; 
+                               border-style: none; border-radius: 200px; width: 55%; font-size: 95%; 
+                               font-weight: bold; color: #0033A0;">Cotizar</button>
+            </section>
+
+            <div id="mensaje" style="display: none; text-align: center; padding: 10px;"></div>
+        </section>
+    </main>
+
+    <footer style="background-color: white;">
+        <div>
+            <img src="img/razones.png" style="width: 100%;" alt="">
+            <img src="img/Captura de pantalla 2025-03-01 155706.png" style="width: 100%;" alt="">
+            <img src="img/Captura de pantalla 2025-03-01 155953.png" style="width: 100%;" alt="">
+            <img src="img/Captura de pantalla 2025-03-01 155953.png" style="width: 100%;" alt="">
+            <img src="img/Captura de pantalla 2025-03-01 160315.png" style="width: 100%;" alt="">
+            <img src="img/Captura de pantalla 2025-03-01 160504.png" style="width: 100%;" alt="">
+            <img src="img/Captura de pantalla 2025-03-01 160656.png" style="width: 100%;" alt="">
+            <img src="img/Captura de pantalla 2025-03-01 160811.png" style="width: 100%;" alt="">
+            <img src="img/Captura de pantalla 2025-03-01 160901.png" style="width: 100%;" alt="">
+            <img src="img/psse.png" style="width: 100%;" alt="">
         </div>
-      </div>
-      <a href="#contratar" class="btn">Inicia tu Solicitud</a>
-    </div>
-  </div>
-
-  <!-- Testimonios -->
-  <div class="container" id="testimonios">
-    <h2 class="section-title">Testimonios de Clientes</h2>
-    <div class="testimonios">
-      <div class="testimonial">
-        <img src="https://picsum.photos/seed/person1/150/150" alt="Cliente 1">
-        <p>"La atención y rapidez del servicio fueron excepcionales. Me sentí seguro y bien asesorado en todo momento."</p>
-        <strong>- Juan Pérez</strong>
-      </div>
-      <div class="testimonial">
-        <img src="https://picsum.photos/seed/person2/150/150" alt="Cliente 2">
-        <p>"Recomiendo Seguros SOAT Colombia por su profesionalismo y por hacer un proceso de contratación tan sencillo."</p>
-        <strong>- María González</strong>
-      </div>
-      <div class="testimonial">
-        <img src="https://picsum.photos/seed/person3/150/150" alt="Cliente 3">
-        <p>"Siempre he confiado en su servicio y apoyo, especialmente en momentos críticos. Un gran respaldo para mi familia."</p>
-        <strong>- Carlos Rodríguez</strong>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sección de Contratación -->
-  <div class="container" id="contratar">
-    <h2 class="section-title">Contrata Tu Seguro</h2>
-    <p>Da el primer paso para asegurar tu vehículo. Completa el siguiente formulario y uno de nuestros asesores te contactará en breve.</p>
-    <div class="contacto">
-      <form action="#" method="post">
-        <input type="text" name="nombre" placeholder="Nombre Completo" required>
-        <input type="email" name="correo" placeholder="Correo Electrónico" required>
-        <input type="tel" name="telefono" placeholder="Número de Teléfono" required>
-        <textarea name="mensaje" rows="5" placeholder="Cuéntanos sobre tu vehículo o duda" required></textarea>
-        <button type="submit" class="btn">Enviar Solicitud</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Seguros SOAT Colombia. Todos los derechos reservados.</p>
-    <p>Dirección: Calle 123 #45-67, Bogotá, Colombia | Tel: (1) 234-5678</p>
-    <p>
-      <a href="#inicio" style="color: #ffcc00; text-decoration: none;">Inicio</a> |
-      <a href="#contacto" style="color: #ffcc00; text-decoration: none;">Contacto</a>
-    </p>
-  </footer>
-
-  <script>
-    // Script simple para cerrar el modal
-    document.getElementById('closeModal').addEventListener('click', function() {
-      document.getElementById('infoModal').style.display = 'none';
-    });
-    
-    // Para evitar que se cierre el modal al hacer clic dentro del modal
-    document.querySelector('.modal').addEventListener('click', function(event) {
-      event.stopPropagation();
-    });
-    
-    // Permitir cerrar el modal al hacer clic fuera de él
-    document.getElementById('infoModal').addEventListener('click', function() {
-      this.style.display = 'none';
-    });
-  </script>
+    </footer>
 </body>
 </html>
